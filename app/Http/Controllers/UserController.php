@@ -22,7 +22,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $user = Auth::user();
+ 
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -76,5 +78,11 @@ class UserController extends Controller
         $favorite_products = $user->favorite_products;
 
         return view('users.favorite', compact('favorite_products'));
+    }
+
+    public function destroy(Request $request)
+    {
+        Auth::user()->delete();
+        return redirect('/');
     }
 }

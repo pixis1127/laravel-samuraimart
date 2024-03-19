@@ -46,5 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('users/carts', 'index')->name('carts.index');
         Route::post('users/carts', 'store')->name('carts.store');
         Route::delete('users/carts', 'destroy')->name('carts.destroy');
+        Route::get('users/mypage/cart_history', 'cart_history_index')->name('mypage.cart_history');
+        Route::get('users/mypage/cart_history/{num}', 'cart_history_show')->name('mypage.cart_history_show');
     });
 });

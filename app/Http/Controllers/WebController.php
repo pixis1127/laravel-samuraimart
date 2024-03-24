@@ -21,6 +21,8 @@ class WebController extends Controller
        
         $recommend_products = Product::where('recommend_flag', true)->take(3)->get();
 
-        return view('web.index', compact('major_categories', 'categories', 'recently_products', 'recommend_products'));
+        $featured_products = Product::withAvg('reviews', 'score')->orderBy('reviews_avg_score', 'desc')->take(4)->get();//平均評価を算出、評価が高い順に並び替え
+
+        return view('web.index', compact('major_categories', 'categories', 'recently_products', 'recommend_products', 'featured_products'));
     }
 }
